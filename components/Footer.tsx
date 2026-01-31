@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -58,14 +58,25 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-orange-600" />
-                <a href="tel:+256700000000" className="hover:text-orange-600 transition">
-                  +256 700 000 000
+                <a href="tel:+256700732114" className="hover:text-orange-600 transition">
+                  +256 700 73 2114
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MessageCircle className="w-4 h-4 text-orange-600" />
+                <a 
+                  href="https://wa.me/256700732114" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-orange-600 transition"
+                >
+                  WhatsApp Us
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-orange-600" />
-                <a href="mailto:info@elevationhomes.ug" className="hover:text-orange-600 transition">
-                  info@elevationhomes.ug
+                <a href="mailto:elevation23@gmail.com" className="hover:text-orange-600 transition">
+                  elevation23@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">

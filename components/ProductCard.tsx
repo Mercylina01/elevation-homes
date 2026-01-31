@@ -1,5 +1,4 @@
 'use client'
-
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
@@ -42,7 +41,6 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-      {/* Product Image */}
       <div className="relative h-64 bg-slate-200 overflow-hidden group">
         {product.image_url ? (
           <Image
@@ -58,7 +56,6 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
 
-      {/* Product Info */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-2">
           <div>
@@ -93,8 +90,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             <ShoppingCart className="w-4 h-4 mr-2" />
             {addedToCart ? 'Added!' : 'Add to Cart'}
           </Button>
+          
           <Link href={`/products/${product.id}`} className="flex-1">
-            <Button variant="outline" className="w-full bg-transparent">
+            <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">
               View Details
             </Button>
           </Link>

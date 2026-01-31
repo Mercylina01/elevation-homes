@@ -1,13 +1,12 @@
 'use client'
 
 import React from "react"
-
 import { useState } from 'react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Phone, Mail, MapPin } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -70,29 +69,44 @@ export default function ContactPage() {
       {/* Contact Section */}
       <section className="py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {/* Contact Cards */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="flex justify-center mb-4">
                 <Phone className="w-10 h-10 text-orange-600" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Phone</h3>
-              <a href="tel:+256700000000" className="text-orange-600 hover:text-orange-700 text-lg">
-                +256 700 000 000
+              <a href="tel:+256700732114" className="text-orange-600 hover:text-orange-700 text-lg">
+                +256 700 73 2114
               </a>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+              <div className="flex justify-center mb-4">
+                <MessageCircle className="w-10 h-10 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">WhatsApp</h3>
+              <a 
+                href="https://wa.me/256700732114" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-orange-600 hover:text-orange-700 text-lg"
+              >
+                Chat with us
+              </a>
+            </div>
+
+            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="flex justify-center mb-4">
                 <Mail className="w-10 h-10 text-orange-600" />
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-2">Email</h3>
-              <a href="mailto:info@elevationhomes.ug" className="text-orange-600 hover:text-orange-700 text-lg">
-                info@elevationhomes.ug
+              <a href="mailto:elevation23@gmail.com" className="text-orange-600 hover:text-orange-700 text-lg break-all">
+                elevation23@gmail.com
               </a>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md text-center">
+            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
               <div className="flex justify-center mb-4">
                 <MapPin className="w-10 h-10 text-orange-600" />
               </div>
@@ -113,6 +127,27 @@ export default function ContactPage() {
               <p className="text-lg text-slate-600 mb-8">
                 Fill out the form and our team will get back to you as soon as possible. We typically respond within 24 hours.
               </p>
+
+              {/* Quick Contact Buttons */}
+              <div className="flex flex-col gap-3 mb-8">
+                <a 
+                  href="https://wa.me/256700732114?text=Hello%20Elevation%20Homes!%20I'm%20interested%20in%20your%20furniture." 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-full"
+                >
+                  <Button className="w-full bg-green-600 hover:bg-green-700">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Message us on WhatsApp
+                  </Button>
+                </a>
+                <a href="tel:+256700732114" className="w-full">
+                  <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call us now
+                  </Button>
+                </a>
+              </div>
 
               {submitted && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
