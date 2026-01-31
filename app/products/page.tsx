@@ -49,20 +49,20 @@ export default function ProductsPage() {
       <Navigation />
 
       {/* Header */}
-      <section className="bg-slate-50 py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            Our Products
+      <section className="bg-white border-b border-gray-200 py-12 md:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
+            Our Collections
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl">
-            Browse our wide selection of quality handcrafted furniture pieces
+          <p className="text-lg text-gray-600 max-w-2xl">
+            Browse our curated selection of premium handcrafted furniture
           </p>
         </div>
       </section>
 
       {/* Filters and Products */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Search Bar */}
           <div className="mb-8">
             <div className="relative max-w-md">
