@@ -8,22 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
 
-// Match the category names exactly with your database
-const CATEGORIES = [
-  'All', 
-  'Beds', 
-  'Chairs', 
-  'Coffee Tables',
-  'Console Tables',
-  'Dining Tables',
-  'Doors and Frames',
-  'Dressing Tables',
-  'Mosquito Nets',
-  'Sofas',
-  'Storage Units',
-  'Tv Wall Units',
-  'Wardrobes'
-]
+const CATEGORIES = ['All', 'Beds', 'Chairs', 'Tables', 'Sofas', 'Cabinets', 'Desks']
 
 export default function ProductsPage() {
   const [products, setProducts] = useState<any[]>([])
@@ -67,13 +52,10 @@ export default function ProductsPage() {
       <section className="bg-slate-50 py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-            {selectedCategory === 'All' ? 'Our Products' : selectedCategory}
+            Our Products
           </h1>
           <p className="text-lg text-slate-600 max-w-2xl">
-            {selectedCategory === 'All' 
-              ? 'Browse our wide selection of quality handcrafted furniture pieces'
-              : `Explore our collection of ${selectedCategory.toLowerCase()}`
-            }
+            Browse our wide selection of quality handcrafted furniture pieces
           </p>
         </div>
       </section>
@@ -129,7 +111,7 @@ export default function ProductsPage() {
           ) : (
             <div className="text-center py-24">
               <p className="text-slate-600 text-xl">
-                {searchQuery ? 'No products found matching your search.' : 'No products available in this category.'}    
+                {searchQuery ? 'No products found matching your search.' : 'No products available in this category.'}
               </p>
               {searchQuery && (
                 <Button

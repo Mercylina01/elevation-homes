@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       .select('*')
       .eq('session_id', sessionId)
       .eq('product_id', product_id)
-      .maybeSingle()
+      .single()
 
     if (existingItem) {
       const { data, error } = await supabase
