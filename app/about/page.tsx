@@ -104,7 +104,7 @@ export default function AboutPage() {
                 <div>
                   <h3 className="font-semibold text-slate-900 text-lg mb-2">Phone</h3>
                   <a href="tel:+256700000000" className="text-orange-600 hover:text-orange-700">
-                    +256 700 000 000
+                    +256 700 732114
                   </a>
                 </div>
               </div>
@@ -113,8 +113,8 @@ export default function AboutPage() {
                 <Mail className="w-6 h-6 text-orange-600 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="font-semibold text-slate-900 text-lg mb-2">Email</h3>
-                  <a href="mailto:info@elevationhomes.ug" className="text-orange-600 hover:text-orange-700">
-                    info@elevationhomes.ug
+                  <a href="mailto:elevation23@gmail.com" className="text-orange-600 hover:text-orange-700">
+                    elevation23@gmail.com
                   </a>
                 </div>
               </div>
