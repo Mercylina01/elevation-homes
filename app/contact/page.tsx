@@ -1,55 +1,16 @@
 'use client'
 
 import React from "react"
-import { useState } from 'react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageCircle, Clock, ArrowRight } from 'lucide-react'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [error, setError] = useState('')
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError('')
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-
-      if (response.ok) {
-        setSubmitted(true)
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-        setTimeout(() => setSubmitted(false), 5000)
-      } else {
-        setError('Failed to send message. Please try again.')
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error)
-      setError('An error occurred. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
+  const handleWhatsAppClick = () => {
+    const message = "Hello Elevation Homes! I'd like to inquire about your furniture."
+    const whatsappUrl = `https://wa.me/256700732114?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
   }
 
   return (
@@ -57,215 +18,129 @@ export default function ContactPage() {
       <Navigation />
 
       {/* Hero */}
-      <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h1>
-          <p className="text-xl text-slate-200">
-            Have questions? We'd love to hear from you. Contact us today!
+      <section className="bg-gradient-to-r from-orange-600 to-orange-700 text-white py-20 md:py-28">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">Get in Touch</h1>
+          <p className="text-xl md:text-2xl text-orange-100 max-w-3xl mx-auto">
+            We're here to help! Reach out to us through any of the channels below.
           </p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-16 md:py-24">
+      {/* Quick Contact Cards */}
+      <section className="py-16 md:py-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Contact Cards */}
-            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">
+            How Can We Help You?
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {/* WhatsApp Card - Featured */}
+            <div className="bg-gradient-to-br from-green-500 to-green-600 text-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1">
               <div className="flex justify-center mb-4">
-                <Phone className="w-10 h-10 text-orange-600" />
+                <MessageCircle className="w-12 h-12" />
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Phone</h3>
-              <a href="tel:+256700732114" className="text-orange-600 hover:text-orange-700 text-lg">
-                +256 700 73 2114
-              </a>
-            </div>
-
-            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
-              <div className="flex justify-center mb-4">
-                <MessageCircle className="w-10 h-10 text-orange-600" />
-              </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">WhatsApp</h3>
-              <a 
-                href="https://wa.me/256700732114" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-orange-600 hover:text-orange-700 text-lg"
+              <h3 className="text-xl font-bold mb-3 text-center">WhatsApp</h3>
+              <p className="text-green-50 text-center mb-6 text-sm">
+                Chat with us instantly
+              </p>
+              <button 
+                onClick={handleWhatsAppClick}
+                className="w-full bg-white text-green-600 hover:bg-green-50 font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
               >
-                Chat with us
+                Start Chat
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Phone Card */}
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-orange-100">
+              <div className="flex justify-center mb-4">
+                <div className="bg-orange-100 p-3 rounded-full">
+                  <Phone className="w-8 h-8 text-orange-600" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3 text-center">Call Us</h3>
+              <p className="text-slate-600 text-center mb-6 text-sm">
+                Mon - Sat, 8AM - 6PM
+              </p>
+              <a href="tel:+256700732114" className="block">
+                <Button className="w-full bg-orange-600 hover:bg-orange-700">
+                  +256 700 73 2114
+                </Button>
               </a>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+            {/* Email Card */}
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-orange-100">
               <div className="flex justify-center mb-4">
-                <Mail className="w-10 h-10 text-orange-600" />
+                <div className="bg-orange-100 p-3 rounded-full">
+                  <Mail className="w-8 h-8 text-orange-600" />
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Email</h3>
-              <a href="mailto:elevation23@gmail.com" className="text-orange-600 hover:text-orange-700 text-lg break-all">
-                elevation23@gmail.com
+              <h3 className="text-xl font-bold text-slate-900 mb-3 text-center">Email</h3>
+              <p className="text-slate-600 text-center mb-6 text-sm">
+                We'll respond within 24hrs
+              </p>
+              <a href="mailto:elevation23@gmail.com" className="block">
+                <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">
+                  Send Email
+                </Button>
               </a>
             </div>
 
-            <div className="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+            {/* Location Card */}
+            <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-orange-100">
               <div className="flex justify-center mb-4">
-                <MapPin className="w-10 h-10 text-orange-600" />
+                <div className="bg-orange-100 p-3 rounded-full">
+                  <MapPin className="w-8 h-8 text-orange-600" />
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Location</h3>
-              <p className="text-slate-600">
+              <h3 className="text-xl font-bold text-slate-900 mb-3 text-center">Visit Us</h3>
+              <p className="text-slate-600 text-center mb-4 text-sm">
                 Mukono, Ku Buteebe<br />
                 Uganda
               </p>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Mukono+Ku+Buteebe+Uganda" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">
+                  Get Directions
+                </Button>
+              </a>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
-                Send us a Message
-              </h2>
-              <p className="text-lg text-slate-600 mb-8">
-                Fill out the form and our team will get back to you as soon as possible. We typically respond within 24 hours.
-              </p>
-
-              {/* Quick Contact Buttons */}
-              <div className="flex flex-col gap-3 mb-8">
-                <a 
-                  href="https://wa.me/256700732114?text=Hello%20Elevation%20Homes!%20I'm%20interested%20in%20your%20furniture." 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    <MessageCircle className="w-5 h-5 mr-2" />
-                    Message us on WhatsApp
-                  </Button>
-                </a>
-                <a href="tel:+256700732114" className="w-full">
-                  <Button variant="outline" className="w-full border-orange-600 text-orange-600 hover:bg-orange-50">
-                    <Phone className="w-5 h-5 mr-2" />
-                    Call us now
-                  </Button>
-                </a>
-              </div>
-
-              {submitted && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                  <p className="text-green-800 font-semibold">✓ Message sent successfully!</p>
-                  <p className="text-green-700 text-sm mt-1">
-                    Thank you for contacting us. We'll be in touch soon.
-                  </p>
-                </div>
-              )}
-
-              {error && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                  <p className="text-red-800 font-semibold">✕ {error}</p>
-                </div>
-              )}
+          {/* Business Hours */}
+          <div className="bg-white p-8 rounded-xl shadow-md max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Clock className="w-6 h-6 text-orange-600" />
+              <h3 className="text-2xl font-bold text-slate-900">Business Hours</h3>
             </div>
-
-            <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-8">
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Full Name *
-                </label>
-                <Input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  required
-                  className="border-slate-300"
-                />
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <p className="font-semibold text-slate-900">Monday - Saturday</p>
+                <p className="text-slate-600">8:00 AM - 6:00 PM</p>
               </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Email Address *
-                </label>
-                <Input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  required
-                  className="border-slate-300"
-                />
+              <div>
+                <p className="font-semibold text-slate-900">Sunday</p>
+                <p className="text-slate-600">Closed</p>
               </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Phone Number
-                </label>
-                <Input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+256 700 000 000"
-                  className="border-slate-300"
-                />
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Subject *
-                </label>
-                <select
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-600"
-                >
-                  <option value="">Select a subject</option>
-                  <option value="general_inquiry">General Inquiry</option>
-                  <option value="custom_order">Custom Order</option>
-                  <option value="product_info">Product Information</option>
-                  <option value="delivery">Delivery Question</option>
-                  <option value="complaint">Complaint</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-
-              <div className="mb-6">
-                <label className="block text-sm font-semibold text-slate-900 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us more about your inquiry..."
-                  required
-                  rows={5}
-                  className="w-full border border-slate-300 rounded-lg px-3 py-2 text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-600"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full bg-orange-600 hover:bg-orange-700"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </Button>
-            </form>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Map Section */}
-      <section className="bg-slate-50 py-16 md:py-24">
+      <section className="py-16 md:py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-8 text-center">
-            Find Us on the Map
+            Find Our Showroom
           </h2>
-          <div className="bg-slate-200 rounded-lg overflow-hidden shadow-lg h-96">
+          <div className="bg-slate-200 rounded-2xl overflow-hidden shadow-2xl h-96 md:h-[500px]">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7444476556254!2d32.74701099999999!3d0.34856699999999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc2e4f8d8d2d%3A0x1234567890abcdef!2sMukono%2C%20Ku%20Buteebe!5e0!3m2!1sen!2sug!4v1234567890123"
               width="100%"
@@ -275,6 +150,33 @@ export default function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-gradient-to-r from-slate-900 to-slate-800 text-white py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Ready to Transform Your Space?
+          </h2>
+          <p className="text-xl text-slate-300 mb-8">
+            Get in touch today and let's create something beautiful together.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button 
+              onClick={handleWhatsAppClick}
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold py-4 px-8 rounded-lg transition-colors flex items-center justify-center gap-2"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Message on WhatsApp
+            </button>
+            <a href="tel:+256700732114">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent border-white text-white hover:bg-white hover:text-slate-900">
+                <Phone className="w-5 h-5 mr-2" />
+                Call Now
+              </Button>
+            </a>
           </div>
         </div>
       </section>
